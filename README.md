@@ -1,1 +1,1 @@
-[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/mvp/images/download.svg) ](https://bintray.com/sourfeng/repositories/mvp/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/wwcore/images/download.svg?version=1.0.2) ](https://bintray.com/sourfeng/repositories/wwcore/1.0.2/link)
