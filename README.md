@@ -11,7 +11,7 @@
 在app目录下的build.gradle中添加依赖
 
 ```
-implementation 'com.coder:mvp:1.0.2'
+implementation 'com.coder:mvp:1.0.4'
 ```
 ### 2. 创建View
 创建一个View 继承自 BaseView
