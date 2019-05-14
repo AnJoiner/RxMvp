@@ -2,7 +2,7 @@
 > 一个简单灵活的MVP框架，一个Activity或Fragment中使用注解的方式，添加多个Presenter。
 
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/wwcore/images/download.svg?version=1.0.2) ](https://bintray.com/sourfeng/repositories/wwcore/1.0.2/link)
+[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/mvp/images/download.svg) ](https://bintray.com/sourfeng/repositories/mvp/_latestVersion)
 
 ## 使用
 
@@ -158,17 +158,6 @@ public class HttpRequest extends RetrofitRequest {
 * baseUrl, 请求Host地址
 * Application，应用Application
 * header, 没有可以直接返回一个空的`HashMap` 
-* 还需引入第三方Library
-
-```text
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.1'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
-```
 
 ## Error
 出现如下异常
