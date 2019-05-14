@@ -157,7 +157,18 @@ public class HttpRequest extends RetrofitRequest {
 
 * baseUrl, 请求Host地址
 * Application，应用Application
-* header, 没有可以直接返回一个空的`HashMap`
+* header, 没有可以直接返回一个空的`HashMap` 
+* 还需引入第三方Library
+
+```text
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+```
 
 ## Error
 出现如下异常
