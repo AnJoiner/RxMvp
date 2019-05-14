@@ -1,12 +1,14 @@
-[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/wwcore/images/download.svg?version=1.0.2) ](https://bintray.com/sourfeng/repositories/wwcore/1.0.2/link)
-
 # RxMvp
 > 一个简单灵活的MVP框架，一个Activity或Fragment中使用注解的方式，添加多个Presenter。
+
+[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/wwcore/images/download.svg?version=1.0.2) ](https://bintray.com/sourfeng/repositories/wwcore/1.0.2/link)
 
 ## 使用
 
 ### 1. 导入
+
+在app目录下的build.gradle中添加依赖
 
 ```
 implementation 'com.coder:mvp:1.0.2'
@@ -36,14 +38,14 @@ public class TestPresenter extends BasePresenter<TestView> {
     }
     
     private void test(){
-        HttpRequest.getInstance().getTestApi().mv()
-                .compose(RxUtils.rxSchedulerHelper())
-                .safeSubscribe(new BaseObserver<BaseResponse<List<TestBean>>>(mView,mContext) {
-                    @Override
-                    protected void resultSuccess(BaseResponse<List<TestBean>> responseBean) {
-                        mView.showArticle(responseBean.getData());
-                    }
-                });
+        disposables.add(HttpRequest.getInstance().getTestApi().mv()
+                        .compose(RxUtils.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse<List<TestBean>>>(mView,mContext) {
+                            @Override
+                            protected void resultSuccess(BaseResponse<List<TestBean>> responseBean) {
+                                mView.showArticle(responseBean.getData());
+                            }
+                        }));
     }
 }
 ```
@@ -107,4 +109,53 @@ public class MainActivity extends BaseActivity implements TestView {
     }
 }
 ```
+## 另外
+
+内部实现了Retrofit请求，可以直接继承 RetrofitRequest
+
+```java
+public class HttpRequest extends RetrofitRequest {
+    
+    @Override
+    protected Application getApplication() {
+        return BaseApplication.getInstance();
+    }
+    
+    @Override
+    protected String getBaseUrl() {
+        return "https://www.wanandroid.com/";
+    }
+    
+    @Override
+    protected HashMap<String, String> getHeaders() {
+        return new HashMap<>();
+    }
+    
+    public HttpRequest() {
+        super();
+    }
+    
+    public static HttpRequest getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+    
+    private static class SingletonHolder {
+        private static final HttpRequest INSTANCE = new HttpRequest();
+    }
+    
+    private TestApi mTestApi;
+    
+    public TestApi getTestApi(){
+        if (mTestApi == null) {
+            mTestApi = mRetrofit.create(TestApi.class);
+        }
+        return mTestApi;
+    }
+}
+```
+但是需提供3个参数：
+
+* baseUrl, 请求Host地址
+* Application，应用Application
+* header, 没有可以直接返回一个空的`HashMap`
 

@@ -28,13 +28,13 @@ public class TestPresenter extends BasePresenter<TestView> {
     }
 
     private void test(){
-        HttpRequest.getInstance().getTestApi().mv()
+        disposables.add(HttpRequest.getInstance().getTestApi().mv()
                 .compose(RxUtils.rxSchedulerHelper())
-                .safeSubscribe(new BaseObserver<BaseResponse<List<TestBean>>>(mView,mContext) {
+                .subscribeWith(new BaseObserver<BaseResponse<List<TestBean>>>(mView,mContext) {
                     @Override
                     protected void resultSuccess(BaseResponse<List<TestBean>> responseBean) {
                         mView.showArticle(responseBean.getData());
                     }
-                });
+                }));
     }
 }
