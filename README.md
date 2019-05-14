@@ -2,8 +2,7 @@
 > 一个简单灵活的MVP框架，一个Activity或Fragment中使用注解的方式，添加多个Presenter。
 
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/mvp/images/download.svg) ](https://bintray.com/sourfeng/repositories/mvp/_latestVersion)
-
+[ ![Download](https://api.bintray.com/packages/sourfeng/repositories/mvp/images/download.svg?version=1.0.4) ](https://bintray.com/sourfeng/repositories/mvp/1.0.4/link)
 ## 使用
 
 ### 1. 导入
