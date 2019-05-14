@@ -39,7 +39,7 @@ public class TestPresenter extends BasePresenter<TestView> {
     
     private void test(){
         disposables.add(HttpRequest.getInstance().getTestApi().mv()
-                        .compose(RxUtils.rxSchedulerHelper())
+                        .compose(RxUtils.<BaseResponse<List<TestBean>>>rxSchedulerHelper())
                         .subscribeWith(new BaseObserver<BaseResponse<List<TestBean>>>(mView,mContext) {
                             @Override
                             protected void resultSuccess(BaseResponse<List<TestBean>> responseBean) {
@@ -159,10 +159,29 @@ public class HttpRequest extends RetrofitRequest {
 * Application，应用Application
 * header, 没有可以直接返回一个空的`HashMap`
 
+## Error
+出现如下异常
+```
+Caused by: com.android.tools.r8.utils.AbortException: Error: Invoke-customs are only supported starting with Android O (--min-api 26)
+```
+需要在app下的build.gradle 中添加
+
+```text
+android {
+    
+    //...
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+```
+
 ## License
 
 ```
-Copyright 2017 SY.Tang
+Copyright 2019 AnJoiner
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
