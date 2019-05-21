@@ -1,5 +1,6 @@
 package com.coder.tasker.base;
 
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.coder.mvp.base.BaseMvpActivity;
@@ -11,6 +12,16 @@ import com.coder.mvp.base.BaseView;
  */
 public abstract class BaseActivity extends BaseMvpActivity implements BaseView {
 
+
+    @Override
+    public void onCreated(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void onCreateStart(Bundle savedInstanceState) {
+
+    }
 
     @Override
     public void start() {

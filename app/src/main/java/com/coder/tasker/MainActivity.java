@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity implements TestView {
     private TestAdapter mAdapter;
 
     @Override
-    protected int getContentView() {
+    protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity implements TestView {
         initRecycler();
         mPresenter.refresh(true);
     }
+
 
     private void initView(){
         mRecyclerView = findViewById(R.id.rv);

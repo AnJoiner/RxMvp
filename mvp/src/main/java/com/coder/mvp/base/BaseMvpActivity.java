@@ -15,9 +15,11 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentView());
+        onCreateStart(savedInstanceState);
+        setContentView(getLayoutId());
         disposables = new CompositeDisposable();
         onPresenterCreate(savedInstanceState);
+        onCreated(savedInstanceState);
         init();
     }
 
@@ -37,9 +39,14 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
         mPresenterDispatch.onSaveInstanceState(outState);
     }
 
-    protected abstract int getContentView();
+    protected abstract int getLayoutId();
+
 
     public abstract void init();
+
+    public abstract void onCreated(Bundle savedInstanceState);
+
+    public abstract void onCreateStart(Bundle savedInstanceState);
 
     protected P getPresenter() {
         return mPresenterProviders.getPresenter(0);
