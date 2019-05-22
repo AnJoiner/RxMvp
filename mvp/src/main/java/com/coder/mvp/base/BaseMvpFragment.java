@@ -50,6 +50,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
             mContext = mActivity;
             this.inflater = inflater;
         }
+        onCreateStart();
         return mRootView;
     }
 
@@ -93,6 +94,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
     @LayoutRes
     int getLayoutId();
 
+    public abstract void onCreateStart();
 
     /**
      * 初始化
@@ -134,6 +136,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
 
     }
 
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -150,6 +153,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
     public void onDestroyView() {
         super.onDestroyView();
         mPresenterDispatch.detachView();
+        disposables.clear();
     }
 
     @Override

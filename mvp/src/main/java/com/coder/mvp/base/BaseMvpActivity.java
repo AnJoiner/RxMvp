@@ -60,5 +60,6 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
     protected void onDestroy() {
         super.onDestroy();
         mPresenterDispatch.detachView();
+        disposables.clear();
     }
 }
