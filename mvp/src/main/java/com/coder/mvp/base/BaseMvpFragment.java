@@ -50,6 +50,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
             mContext = mActivity;
             this.inflater = inflater;
         }
+        onCreateStart();
         return mRootView;
     }
 
@@ -93,6 +94,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
     @LayoutRes
     int getLayoutId();
 
+    public abstract void onCreateStart();
 
     /**
      * 初始化
