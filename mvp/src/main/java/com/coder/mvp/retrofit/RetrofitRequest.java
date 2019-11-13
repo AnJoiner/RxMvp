@@ -69,7 +69,7 @@ public abstract class RetrofitRequest {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request.Builder builder = chain.request().newBuilder();
-
+                headers = getHeaders();
                 if (headers!=null){
                     for (Map.Entry<String, String> entry : headers.entrySet()) {
                         builder.addHeader(entry.getKey(),entry.getValue());

@@ -6,6 +6,7 @@ import com.coder.mvp.retrofit.RetrofitRequest;
 import com.coder.tasker.BaseApplication;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @auther: AnJoiner
@@ -25,6 +26,9 @@ public class HttpRequest extends RetrofitRequest {
 
     @Override
     protected HashMap<String, String> getHeaders() {
+        Map<String,String> headers = new HashMap<>();
+        headers.put("token","jkk2234892dksjdk=lla;alakdfa");
+        headers.put("deviceId","1");
         return new HashMap<>();
     }
 
