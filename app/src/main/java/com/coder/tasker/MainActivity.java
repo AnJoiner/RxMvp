@@ -1,7 +1,5 @@
 package com.coder.tasker;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.coder.mvp.annotation.CreatePresenter;
 import com.coder.mvp.annotation.PresenterVariable;
@@ -12,6 +10,9 @@ import com.coder.tasker.mvp.vu.TestView;
 import com.coder.tasker.ui.home.adapter.TestAdapter;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 @CreatePresenter(presenter = TestPresenter.class)
