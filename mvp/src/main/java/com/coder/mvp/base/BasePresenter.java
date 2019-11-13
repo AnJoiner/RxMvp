@@ -2,10 +2,10 @@ package com.coder.mvp.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 
+import androidx.annotation.Nullable;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**

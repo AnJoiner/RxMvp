@@ -1,8 +1,8 @@
 package com.coder.mvp.base;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {

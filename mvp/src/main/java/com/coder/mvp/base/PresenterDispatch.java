@@ -2,11 +2,11 @@ package com.coder.mvp.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**

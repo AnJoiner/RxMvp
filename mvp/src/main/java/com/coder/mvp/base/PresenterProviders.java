@@ -3,13 +3,14 @@ package com.coder.mvp.base;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.support.v4.app.Fragment;
 
 import com.coder.mvp.annotation.CreatePresenter;
 import com.coder.mvp.annotation.PresenterVariable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * create by lzx
