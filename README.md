@@ -1,11 +1,11 @@
 # RxMvp
+[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Download](https://api.bintray.com/packages/sourfeng/repositories/mvp/images/download.svg?version=1.0.8) ](https://bintray.com/sourfeng/repositories/mvp/1.0.8/link)
+
 一个简单灵活的MVP框架
 * 支持`Activity`或`Fragment`中使用注解的方式添加Presenter，支持添加多个Presenter。
 * 封装`Retrofit`网络请求
 * 可自定义添加`Header`请求头
-
-[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Download](https://api.bintray.com/packages/sourfeng/repositories/mvp/images/download.svg?version=1.0.8) ](https://bintray.com/sourfeng/repositories/mvp/1.0.8/link)
 
 ## 使用
 
