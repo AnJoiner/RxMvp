@@ -6,7 +6,7 @@ import com.coder.mvp.annotation.PresenterVariable;
 import com.coder.tasker.base.BaseActivity;
 import com.coder.tasker.mvp.model.TestBean;
 import com.coder.tasker.mvp.presenter.TestPresenter;
-import com.coder.tasker.mvp.vu.TestView;
+import com.coder.tasker.mvp.vu.TestVu;
 import com.coder.tasker.ui.home.adapter.TestAdapter;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 @CreatePresenter(presenter = TestPresenter.class)
-public class MainActivity extends BaseActivity implements TestView {
+public class MainActivity extends BaseActivity implements TestVu {
 
 
     @PresenterVariable

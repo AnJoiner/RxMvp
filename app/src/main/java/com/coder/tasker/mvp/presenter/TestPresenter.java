@@ -6,7 +6,7 @@ import com.coder.tasker.api.HttpRequest;
 import com.coder.tasker.base.BaseObserver;
 import com.coder.tasker.base.BaseResponse;
 import com.coder.tasker.mvp.model.TestBean;
-import com.coder.tasker.mvp.vu.TestView;
+import com.coder.tasker.mvp.vu.TestVu;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @auther: AnJoiner
  * @datetime: 2019/5/14
  */
-public class TestPresenter extends BasePresenter<TestView> {
+public class TestPresenter extends BasePresenter<TestVu> {
 
 
     @Override

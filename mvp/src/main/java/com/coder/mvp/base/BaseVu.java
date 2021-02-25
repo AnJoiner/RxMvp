@@ -4,7 +4,7 @@ package com.coder.mvp.base;
  * create by lzx
  * time:2018/7/27
  */
-public interface BaseView {
+public interface BaseVu {
 
     void start();
 

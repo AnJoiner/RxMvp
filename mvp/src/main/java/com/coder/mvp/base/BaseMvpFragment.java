@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment implements BaseVu {
     protected View mRootView;
     protected LayoutInflater inflater;
     // 标志位 标志已经初始化完成。

@@ -2,7 +2,7 @@ package com.coder.tasker.base;
 
 import android.content.Context;
 
-import com.coder.mvp.base.BaseView;
+import com.coder.mvp.base.BaseVu;
 import com.coder.mvp.retrofit.ApiException;
 import com.coder.tasker.config.Constants;
 
@@ -22,12 +22,12 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     private final String COMPONENT_EXCEPTION = "The object neither activity nor fragment.";
 
 
-    protected BaseView mBaseView;
+    protected BaseVu mBaseVu;
 
     private Context context;
 
-    public BaseObserver(BaseView baseView, Context context) {
-        mBaseView = baseView;
+    public BaseObserver(BaseVu baseVu, Context context) {
+        mBaseVu = baseVu;
         this.context = context;
     }
 
@@ -43,13 +43,13 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onNext(T responseBean) {
-        if (mBaseView == null) {
+        if (mBaseVu == null) {
             return;
         }
        if (responseBean instanceof BaseResponse){
            int errorCode = ((BaseResponse) responseBean).getErrorCode();
            if (errorCode == Constants.CODE_OK) {
-               mBaseView.complete();
+               mBaseVu.complete();
                resultSuccess(responseBean);
            } else {
                onError(new ApiException(((BaseResponse) responseBean).getErrorCode(), (
@@ -74,8 +74,8 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     }
 
     public void resultError(String msg){
-        mBaseView.showProgressUI(false);
-        mBaseView.showError(msg);
+        mBaseVu.showProgressUI(false);
+        mBaseVu.showError(msg);
     }
 
     public void tokenInvalid(){

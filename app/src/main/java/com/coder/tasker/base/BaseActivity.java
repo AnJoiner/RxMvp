@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.coder.mvp.base.BaseMvpActivity;
-import com.coder.mvp.base.BaseView;
+import com.coder.mvp.base.BaseVu;
 
 /**
  * @auther: AnJoiner
  * @datetime: 2019/5/14
  */
-public abstract class BaseActivity extends BaseMvpActivity implements BaseView {
+public abstract class BaseActivity extends BaseMvpActivity implements BaseVu {
 
 
     @Override

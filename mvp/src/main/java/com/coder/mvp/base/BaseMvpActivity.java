@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompatActivity implements BaseVu {
 
     private PresenterProviders mPresenterProviders;
     private PresenterDispatch mPresenterDispatch;
