@@ -8,15 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment implements BaseVu {
+public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment implements BaseVu {
     protected View mRootView;
-    protected LayoutInflater inflater;
     // 标志位 标志已经初始化完成。
     protected boolean isPrepared;
     //标志位 fragment是否可见
@@ -29,12 +34,13 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
     private PresenterDispatch mPresenterDispatch;
     private CompositeDisposable disposables;
 
+    protected T mBinding;
 
     @Override
-    public void onAttach(Context context) {
-        mActivity = (Activity) context;
-        mContext = context;
-        super.onAttach(context);
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
+        mContext = activity;
     }
 
     @Nullable
@@ -45,10 +51,12 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
             if (parent != null)
                 parent.removeView(mRootView);
         } else {
-            mRootView = inflater.inflate(getLayoutId(), container, false);
-            mActivity = getActivity();
-            mContext = mActivity;
-            this.inflater = inflater;
+            mBinding = buildViewBinding(container);
+            if (mBinding != null && mBinding.getRoot() != null) {
+                mRootView = mBinding.getRoot();
+            } else {
+                mRootView = inflater.inflate(getLayoutId(), container, false);
+            }
         }
         onCreateStart();
         return mRootView;
@@ -64,6 +72,19 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
         lazyLoad();
     }
 
+    private T buildViewBinding(ViewGroup container) {
+        T binding = null;
+        Type superclass = getClass().getGenericSuperclass();
+        Class<?> aClass = (Class<?>) ((ParameterizedType) superclass).getActualTypeArguments()[0];
+        try {
+            Method method = aClass.getDeclaredMethod("inflate", LayoutInflater.class, ViewGroup.class, boolean.class);
+            binding = (T) method.invoke(null, getLayoutInflater(), container, false);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return binding;
+    }
+
     private void onPresenterCreate(Bundle savedInstanceState) {
 
         mPresenterProviders = PresenterProviders.inject(this);
@@ -73,14 +94,11 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
         mPresenterDispatch.onCreatePresenter(savedInstanceState);
     }
 
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         mPresenterDispatch.onSaveInstanceState(outState);
-    }
-
-    protected P getPresenter() {
-        return mPresenterProviders.getPresenter(0);
     }
 
     public PresenterProviders getPresenterProviders() {
@@ -90,9 +108,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
     /**
      * 获取布局
      */
-    public abstract
-    @LayoutRes
-    int getLayoutId();
+    public abstract int getLayoutId();
 
     public abstract void onCreateStart();
 

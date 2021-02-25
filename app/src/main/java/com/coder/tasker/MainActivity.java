@@ -1,9 +1,13 @@
 package com.coder.tasker;
 
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.coder.mvp.annotation.CreatePresenter;
 import com.coder.mvp.annotation.PresenterVariable;
 import com.coder.tasker.base.BaseActivity;
+import com.coder.tasker.databinding.ActivityMainBinding;
 import com.coder.tasker.mvp.model.TestBean;
 import com.coder.tasker.mvp.presenter.TestPresenter;
 import com.coder.tasker.mvp.vu.TestVu;
@@ -11,13 +15,9 @@ import com.coder.tasker.ui.home.adapter.TestAdapter;
 
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 
 @CreatePresenter(presenter = TestPresenter.class)
-public class MainActivity extends BaseActivity implements TestVu {
-
+public class MainActivity extends BaseActivity<ActivityMainBinding> implements TestVu {
 
     @PresenterVariable
     TestPresenter mPresenter;
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity implements TestVu {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main;
+        return 0;
     }
 
     @Override
@@ -38,9 +38,8 @@ public class MainActivity extends BaseActivity implements TestVu {
         mPresenter.refresh(true);
     }
 
-
     private void initView(){
-        mRecyclerView = findViewById(R.id.rv);
+        mRecyclerView = mViewBinding.rv;
     }
 
     private void initRecycler(){

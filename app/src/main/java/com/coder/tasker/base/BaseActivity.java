@@ -1,7 +1,8 @@
 package com.coder.tasker.base;
 
 import android.os.Bundle;
-import android.widget.Toast;
+
+import androidx.viewbinding.ViewBinding;
 
 import com.coder.mvp.base.BaseMvpActivity;
 import com.coder.mvp.base.BaseVu;
@@ -10,7 +11,7 @@ import com.coder.mvp.base.BaseVu;
  * @auther: AnJoiner
  * @datetime: 2019/5/14
  */
-public abstract class BaseActivity extends BaseMvpActivity implements BaseVu {
+public abstract class BaseActivity<T extends ViewBinding> extends BaseMvpActivity<T> implements BaseVu {
 
 
     @Override
@@ -30,7 +31,7 @@ public abstract class BaseActivity extends BaseMvpActivity implements BaseVu {
 
     @Override
     public void showError(String msg) {
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
