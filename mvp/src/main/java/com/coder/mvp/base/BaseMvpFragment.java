@@ -34,7 +34,7 @@ public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment im
     private PresenterDispatch mPresenterDispatch;
     private CompositeDisposable disposables;
 
-    protected T mBinding;
+    protected T mViewBinding;
 
     @Override
     public void onAttach(@NonNull Activity activity) {
@@ -51,9 +51,9 @@ public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment im
             if (parent != null)
                 parent.removeView(mRootView);
         } else {
-            mBinding = buildViewBinding(container);
-            if (mBinding != null && mBinding.getRoot() != null) {
-                mRootView = mBinding.getRoot();
+            mViewBinding = buildViewBinding(container);
+            if (mViewBinding != null && mViewBinding.getRoot() != null) {
+                mRootView = mViewBinding.getRoot();
             } else {
                 mRootView = inflater.inflate(getLayoutId(), container, false);
             }
