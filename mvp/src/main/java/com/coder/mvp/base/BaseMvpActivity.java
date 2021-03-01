@@ -69,13 +69,13 @@ public abstract class BaseMvpActivity<T extends ViewBinding> extends AppCompatAc
 
     protected abstract int getLayoutId();
 
-    public abstract void init();
+    protected abstract void init();
 
-    public abstract void onCreated(Bundle savedInstanceState);
+    protected abstract void onCreated(Bundle savedInstanceState);
 
-    public abstract void onCreateStart(Bundle savedInstanceState);
+    protected abstract void onCreateStart(Bundle savedInstanceState);
 
-    public PresenterProviders getPresenterProviders() {
+    protected PresenterProviders getPresenterProviders() {
         return mPresenterProviders;
     }
 

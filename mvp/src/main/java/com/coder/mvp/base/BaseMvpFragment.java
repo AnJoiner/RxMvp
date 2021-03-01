@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -101,34 +100,25 @@ public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment im
         mPresenterDispatch.onSaveInstanceState(outState);
     }
 
-    public PresenterProviders getPresenterProviders() {
+    protected abstract int getLayoutId();
+
+    protected abstract void init();
+
+    protected abstract void onCreateStart();
+
+    protected void lazyLoadData() {}
+
+    protected void onVisible() {
+        lazyLoad();
+    }
+
+    protected void onInvisible() {}
+
+    protected PresenterProviders getPresenterProviders() {
         return mPresenterProviders;
     }
 
-    /**
-     * 获取布局
-     */
-    public abstract int getLayoutId();
 
-    public abstract void onCreateStart();
-
-    /**
-     * 初始化
-     */
-    protected abstract void init();
-
-    public View findViewById(@IdRes int id) {
-        View view;
-        if (mRootView != null) {
-            view = mRootView.findViewById(id);
-            return view;
-        }
-        return null;
-    }
-
-    /**
-     * 懒加载
-     */
     private void lazyLoad() {
         if (!isPrepared || !isVisible) {
             return;
@@ -136,22 +126,6 @@ public abstract class BaseMvpFragment<T extends ViewBinding> extends Fragment im
         lazyLoadData();
         isPrepared = false;
     }
-
-    /**
-     * 懒加载
-     */
-    protected void lazyLoadData() {
-
-    }
-
-    protected void onVisible() {
-        lazyLoad();
-    }
-
-    protected void onInvisible() {
-
-    }
-
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
